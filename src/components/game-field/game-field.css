@@ -1,0 +1,17 @@
+.wrapper {
+    width: 450px;
+    height: 450px;
+    background-color: orange;
+}
+
+.cell {
+    width: 150px;
+    height: 150px;
+    border: 1px solid white;
+    float: left;
+    box-sizing: border-box;
+    text-align: center;
+    color: white;
+    font-size: 100px;
+    font-weight: bold;
+}
