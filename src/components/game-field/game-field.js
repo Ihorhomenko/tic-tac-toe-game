@@ -37,16 +37,42 @@ const GameField = () => {
             setWinner(newWinner === "X" ? "Гравець 1" : "Гравець 2")
         }
 
-    }, board)
+
+    }, [board])
 
     const hundleClick = (ind) => {
         if(ind < 0 || ind > 9 || board[ind] || winner) return
-        console.log(ind)
         const newBoard = [...board]
-        newBoard.splice(ind, 1, "X")    
+        newBoard.splice(ind, 1, "X") 
+        newElCell(newBoard)   
+        console.log(newBoard)
         setBoard(newBoard)
+
+
     }
 
+    const newElCell = (board) => {
+        const indexes = [];
+        let randomInd = Math.floor(Math.random() * 9)
+
+        if (board.includes("")) {
+            let ind = board.indexOf("")
+
+        while (ind !== -1 ) {
+            if(!indexes.includes(ind)) {
+            indexes.push(ind);
+            ind = board.indexOf("", ind + 1);
+            }            
+          }
+            console.log(indexes, randomInd)
+        
+        }
+            board.splice(randomInd, 1, "O")
+
+
+        // return board
+        
+    }
     
     return (
         <div>
