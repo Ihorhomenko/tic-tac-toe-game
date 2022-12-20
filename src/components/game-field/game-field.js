@@ -34,7 +34,7 @@ const GameField = () => {
         }
 
         if(newWinner) {
-            setWinner(newWinner === "X" ? "Гравець 1" : "Гравець 2")
+            setWinner(newWinner === "X" ? "Гравець 1" : "Гравець 2")            
         }
 
 
@@ -45,15 +45,20 @@ const GameField = () => {
         const newBoard = [...board]
         newBoard.splice(ind, 1, "X") 
         newElCell(newBoard)   
-        console.log(newBoard)
         setBoard(newBoard)
 
 
+    } 
+    
+    const RandCell = (ar) => {
+        if(ar.length === 0) return
+        const rand = Math.random() * ar.length | 0;
+        const cellValue = ar[rand];
+        return cellValue;
     }
 
     const newElCell = (board) => {
         const indexes = [];
-        let randomInd = Math.floor(Math.random() * 9)
 
         if (board.includes("")) {
             let ind = board.indexOf("")
@@ -63,17 +68,18 @@ const GameField = () => {
             indexes.push(ind);
             ind = board.indexOf("", ind + 1);
             }            
-          }
-            console.log(indexes, randomInd)
-        
+          }            
         }
+            const randomInd = RandCell(indexes)
+            if(winner) return
             board.splice(randomInd, 1, "O")
-
-
-        // return board
-        
     }
-    
+
+    const hundleBtnClick = () => {
+        setBoard(Array(9).fill(""))
+        setWinner("")
+    }
+
     return (
         <div>
             {winner && <h2>{winner} переміг</h2>}
@@ -83,6 +89,7 @@ const GameField = () => {
                     <Cell key={i} value={el} ind={i} hundleClick={hundleClick}/>
             ))}
         </div>
+        <button type="button" onClick={hundleBtnClick}>Грати ще раз</button>
         </div>
         
     )
