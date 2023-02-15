@@ -1,7 +1,13 @@
+.appWrapper {
+    margin-top: 20px;
+}
+
 .wrapper {
     width: 450px;
     height: 450px;
     background-color: orange;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .cell {
@@ -14,4 +20,9 @@
     color: white;
     font-size: 100px;
     font-weight: bold;
+}
+.btn {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }

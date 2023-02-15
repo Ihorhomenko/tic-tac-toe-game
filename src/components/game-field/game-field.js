@@ -81,7 +81,7 @@ const GameField = () => {
     }
 
     return (
-        <div>
+        <div className="appWrapper">
             {winner && <h2>{winner} переміг</h2>}
         
             <div className="wrapper">
@@ -89,7 +89,7 @@ const GameField = () => {
                     <Cell key={i} value={el} ind={i} hundleClick={hundleClick}/>
             ))}
         </div>
-        <button type="button" onClick={hundleBtnClick}>Грати ще раз</button>
+        <button className="btn" type="button" onClick={hundleBtnClick}>Грати ще раз</button>
         </div>
         
     )
