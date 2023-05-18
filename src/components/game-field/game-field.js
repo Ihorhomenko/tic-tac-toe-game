@@ -7,7 +7,7 @@ import "./game-field.css"
 const GameField = () => {
     
     const [board, setBoard] = useState(Array(9).fill(""))
-    const [winner, setWinner] = useState('')
+    const [winner, setWinner] = useState(null)
 
     useEffect(() => {
         const winsPositions = [
@@ -34,23 +34,22 @@ const GameField = () => {
         }
 
         if(newWinner) {
-            setWinner(newWinner === "X" ? "Гравець 1" : "Гравець 2")            
+            setWinner(newWinner === "X" ? "Гравець 1" : "Гравець 2")          
         }
-
 
     }, [board])
 
     const hundleClick = (ind) => {
-        if(ind < 0 || ind > 9 || board[ind] || winner) return
+        if(ind < 0 || ind > 9 || board[ind]) return
         const newBoard = [...board]
         newBoard.splice(ind, 1, "X") 
+        if(winner) return
         newElCell(newBoard)   
         setBoard(newBoard)
-
-
     } 
     
     const RandCell = (ar) => {
+        
         if(ar.length === 0) return
         const rand = Math.random() * ar.length | 0;
         const cellValue = ar[rand];
@@ -58,12 +57,14 @@ const GameField = () => {
     }
 
     const newElCell = (board) => {
-        const indexes = [];
+        if(winner) return
 
+        const indexes = [];
+        
         if (board.includes("")) {
             let ind = board.indexOf("")
 
-        while (ind !== -1 ) {
+        while (ind !== -1) {
             if(!indexes.includes(ind)) {
             indexes.push(ind);
             ind = board.indexOf("", ind + 1);
@@ -71,7 +72,6 @@ const GameField = () => {
           }            
         }
             const randomInd = RandCell(indexes)
-            if(winner) return
             board.splice(randomInd, 1, "O")
     }
 
@@ -89,7 +89,7 @@ const GameField = () => {
                     <Cell key={i} value={el} ind={i} hundleClick={hundleClick}/>
             ))}
         </div>
-        <button className="btn" type="button" onClick={hundleBtnClick}>Грати ще раз</button>
+            {winner && <button className="btn" type="button" onClick={hundleBtnClick}>Грати ще раз</button>}
         </div>
         
     )

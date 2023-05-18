@@ -23,6 +23,17 @@
 }
 .btn {
     display: block;
+    border-radius: 3px;
+    margin-top: 15px;
     margin-left: auto;
     margin-right: auto;
+    background-color: orange;
+    outline: none;
+    border: none;
+    color: white;
+}
+.btn:hover{
+    background-color: white;
+    color: orange;
+    border: 1px solid orange;
 }
