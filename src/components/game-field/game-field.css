@@ -10,7 +10,7 @@
     margin-left: auto;
 }
 
-.cell {
+.square {
     width: 150px;
     height: 150px;
     border: 1px solid white;
